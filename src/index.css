@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   DESIGN TOKENS - HYBRID DESIGN SYSTEM
+   Fusión armónica de ambos referentes:
+   - Referente 1 (Travel/Violet): Fondo lila claro (#f5f0fb), tarjetas blancas
+     con sombras neomórficas/flotantes ultra suaves, bordes con troquel/notch,
+     chips circulares pastel, botones píldora violeta sólido (#8a62cc / #7b52c9),
+     y cápsula con barra de búsqueda y tabs.
+   - Referente 2 (Health/Blue): Cabeceras orgánicas curvas/onduladas con degradado
+     de azul a violeta, métricas categóricas de color vivo (cyan, coral, ámbar)
+     y tipografía legible con gran jerarquía.
+   ========================================================================== */
+
+:root {
+  /* --- PALETA BASE & LIENZO (Del Referente 1: Lila suave característico) --- */
+  --color-bg-app: #f4effb;           /* Fondo general lila pastel */
+  --color-bg-surface: #ffffff;       /* Superficie de tarjetas blancas puras */
+  --color-bg-surface-subtle: #faf7fd;/* Superficie secundaria / tintada */
+  --color-bg-input: #f8f6fc;         /* Fondo de inputs y search bars */
+
+  /* --- COLOR PRINCIPAL / MARCA (Violeta suave & vibrante) --- */
+  --color-brand-primary: #8b5cf6;     /* Violeta medio */
+  --color-brand-deep: #774fcf;        /* Violeta del botón CHECKOUT / botones principales */
+  --color-brand-light: #a78bfa;       /* Tono violeta claro */
+  --color-brand-pastel: #ede9fe;      /* Fondo de chips / tags activos */
+  
+  /* --- GRADIENTES ORGÁNICOS (Del Referente 2 aplicado al fondo lila/violeta) --- */
+  --gradient-brand: linear-gradient(145deg, #7045d4 0%, #895ce6 50%, #526be4 100%);
+  --gradient-card-ticket: linear-gradient(180deg, #ffffff 0%, #fdfcff 100%);
+  
+  /* --- ACENTOS PASTEL CATEGÓRICOS (Inspirado en los iconos circulares del Referente 1) --- */
+  --color-chip-pink: #fbcfe8;        /* Rosa pastel suave */
+  --color-chip-pink-icon: #ec4899;
+  --color-chip-blue: #cffafe;        /* Azul/Cian pastel suave */
+  --color-chip-blue-icon: #06b6d4;
+  --color-chip-amber: #fef3c7;       /* Amarillo pastel suave */
+  --color-chip-amber-icon: #f59e0b;
+  --color-chip-purple: #ede9fe;      /* Violeta pastel suave */
+  --color-chip-purple-icon: #8b5cf6;
+  --color-chip-coral: #ffe4e6;       /* Coral pastel suave */
+  --color-chip-coral-icon: #f43f5e;
+
+  /* --- TEXTO Y CONTRASTE --- */
+  --color-text-title: #2a2542;       /* Título azul pizarra oscuro suave */
+  --color-text-body: #5e5977;        /* Texto estándar */
+  --color-text-muted: #9f9cb2;       /* Texto atenuado y placeholders */
+  --color-text-inverse: #ffffff;
+
+  /* --- BORDES Y SEPARADORES --- */
+  --color-border-card: #f0eaf8;
+  --color-ticket-dashed: #e5def0;    /* Línea punteada de boletos / tickets */
+
+  /* --- RADIOS DE CURVATURA (Muy redondeados como ambos referentes) --- */
+  --radius-badge: 9999px;            /* Cápsula completa */
+  --radius-xs: 10px;
+  --radius-sm: 16px;
+  --radius-md: 22px;
+  --radius-lg: 28px;
+  --radius-xl: 36px;
+  --radius-ticket: 26px;
+
+  /* --- SOMBRAS DEL REFERENTE 1 (Sombra difusa, flotante, neomórfica sutil) --- */
+  --shadow-floating-sm: 0 4px 16px -2px rgba(139, 92, 246, 0.08), 0 2px 6px -1px rgba(60, 40, 100, 0.04);
+  --shadow-floating-card: 0 12px 32px -4px rgba(120, 80, 200, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+  --shadow-button-primary: 0 8px 20px -2px rgba(119, 79, 207, 0.35);
+  --shadow-inset-soft: inset 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+/* Modo oscuro opcional listo para ser activado manteniendo la misma jerarquía */
+.dark {
+  --color-bg-app: #13111c;
+  --color-bg-surface: #1e1b2e;
+  --color-bg-surface-subtle: #252238;
+  --color-bg-input: #231f36;
+  --color-text-title: #f5f3ff;
+  --color-text-body: #c4b5fd;
+  --color-text-muted: #7c7694;
+  --color-border-card: #2e2a44;
+  --color-ticket-dashed: #393454;
+  --shadow-floating-sm: 0 4px 16px -2px rgba(0, 0, 0, 0.4);
+  --shadow-floating-card: 0 12px 32px -4px rgba(0, 0, 0, 0.5);
+}
+
+/* Resets y tipografía */
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--color-bg-app);
+  color: var(--color-text-title);
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  overflow-x: hidden;
+}
+
+/* Clases utilitarias del Design System */
+.bg-app-canvas { background-color: var(--color-bg-app); }
+.bg-surface-card { background-color: var(--color-bg-surface); }
+.text-title { color: var(--color-text-title); }
+.text-body { color: var(--color-text-body); }
+.text-muted-soft { color: var(--color-text-muted); }
+.text-brand-purple { color: var(--color-brand-deep); }
+
+.rounded-squircle-md { border-radius: var(--radius-md); }
+.rounded-squircle-lg { border-radius: var(--radius-lg); }
+.rounded-squircle-xl { border-radius: var(--radius-xl); }
+.rounded-ticket { border-radius: var(--radius-ticket); }
+
+.shadow-card-float { box-shadow: var(--shadow-floating-card); }
+.shadow-card-soft { box-shadow: var(--shadow-floating-sm); }
+.shadow-btn-primary { box-shadow: var(--shadow-button-primary); }
+
+.bg-gradient-header { background: var(--gradient-brand); }
+.bg-brand-button { background-color: var(--color-brand-deep); }
+
+/* Efecto ticket troquelado con muescas laterales (Referente 1) */
+.ticket-container {
+  position: relative;
+  background-color: var(--color-bg-surface);
+  border-radius: var(--radius-ticket);
+  box-shadow: var(--shadow-floating-card);
+}
+.ticket-notch-left {
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-bg-app);
+  border-radius: 9999px;
+  box-shadow: inset -2px 0 4px rgba(0, 0, 0, 0.03);
+}
+.ticket-notch-right {
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-bg-app);
+  border-radius: 9999px;
+  box-shadow: inset 2px 0 4px rgba(0, 0, 0, 0.03);
+}
+.ticket-divider {
+  border-top: 2px dashed var(--color-ticket-dashed);
+}
