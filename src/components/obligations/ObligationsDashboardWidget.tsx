@@ -1,6 +1,7 @@
 import React from 'react';
 import { AlertCircle, CheckCircle2, ChevronRight, Clock, Plus } from 'lucide-react';
 import { formatCurrency, cn } from '../../lib/utils';
+import { Button } from '../ui/Button';
 import type { Database } from '../../types/supabase';
 
 type Obligation = Database['public']['Tables']['obligations']['Row'];
@@ -22,7 +23,7 @@ export const ObligationsDashboardWidget: React.FC<ObligationsDashboardWidgetProp
   onOpenDetails,
   onAddObligation,
   onQuickPay,
-  currency = "USD",
+  currency = "COP",
   className,
 }) => {
   const currentDay = new Date().getDate();
@@ -66,20 +67,12 @@ export const ObligationsDashboardWidget: React.FC<ObligationsDashboardWidgetProp
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
-          <button
-            onClick={onAddObligation}
-            className="w-8 h-8 rounded-full bg-[#f4effb] hover:bg-[#ede9fe] text-[#7b52c9] flex items-center justify-center transition-all cursor-pointer shadow-sm"
-            title="Añadir Obligación"
-          >
-            <Plus className="w-4 h-4" />
-          </button>
-          
+        <div>
           <button
             onClick={onOpenDetails}
-            className="flex items-center gap-1 text-xs font-bold text-[#7b52c9] hover:text-[#6a42b8] transition-colors cursor-pointer py-1 px-2 rounded-lg hover:bg-slate-50"
+            className="flex items-center gap-1 text-xs font-bold text-[#7b52c9] hover:text-[#6a42b8] transition-colors cursor-pointer py-1.5 px-3 rounded-xl bg-purple-50 hover:bg-purple-100/80"
           >
-            <span>Ver todo</span>
+            <span>Ver detalles</span>
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>
@@ -160,6 +153,20 @@ export const ObligationsDashboardWidget: React.FC<ObligationsDashboardWidgetProp
           <span>¡Genial! Todas las obligaciones de este mes están cubiertas.</span>
         </div>
       )}
+
+      {/* Botón Principal para Añadir Obligación (Ancho completo, abajo del cuadro) */}
+      <div className="mt-5 pt-4 border-t border-slate-100">
+        <Button
+          variant="primary"
+          size="lg"
+          fullWidth
+          onClick={onAddObligation}
+          icon={<Plus className="w-5 h-5" />}
+          className="shadow-btn-primary rounded-2xl py-3 font-extrabold text-xs"
+        >
+          Añadir Obligación
+        </Button>
+      </div>
 
     </div>
   );
